@@ -238,4 +238,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - CMS Design System for UI components and styling
 - React.js team for the framework
+<<<<<<< HEAD
 - All contributors who have helped shape this project 
+=======
+- All contributors who have helped shape this project 
+>>>>>>> e8cc30c890f5bae1151ef3f50e4331c5ad24570a
