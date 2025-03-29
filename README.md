@@ -26,10 +26,11 @@ ASETT (Administrative Simplification Enforcement and Testing Tool) is a web-base
 
 ## Technology Stack
 
-- React.js
-- React Router for navigation
-- CMS Design System for UI components
+- React.js (v18.2.0)
+- React Router v6 for navigation
+- CMS Design System (@cmsgov/design-system)
 - Modern CSS with utility classes
+- Create React App for project scaffolding
 
 ## Getting Started
 
@@ -42,7 +43,7 @@ ASETT (Administrative Simplification Enforcement and Testing Tool) is a web-base
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/Sankarshan03/ASETT.git
 cd ASETT
 ```
 
@@ -58,6 +59,33 @@ npm start
 
 The application will be available at `http://localhost:3000`
 
+## Project Dependencies
+
+### Core Dependencies
+```json
+{
+  "dependencies": {
+    "@cmsgov/design-system": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.0.0",
+    "react-scripts": "5.0.1"
+  }
+}
+```
+
+### Development Dependencies
+```json
+{
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "web-vitals": "^2.1.4"
+  }
+}
+```
+
 ## Project Structure
 
 ```
@@ -67,7 +95,8 @@ ASETT/
 │   ├── components/       # Reusable components
 │   └── styles/          # CSS and styling files
 ├── public/              # Static assets
-└── package.json         # Project dependencies and scripts
+├── package.json         # Project dependencies and scripts
+└── README.md           # Project documentation
 ```
 
 ## Development
@@ -78,6 +107,15 @@ ASETT/
 - `npm test`: Launches the test runner
 - `npm run build`: Builds the app for production
 - `npm run eject`: Ejects from Create React App
+
+### CMS Design System Integration
+
+The project uses the CMS Design System for consistent UI components. Key components used include:
+
+- `Card`: For content containers
+- `WarningIcon`: For error messages
+- `TooltipIcon`: For help text and tooltips
+- Utility classes for spacing and layout
 
 ### Code Style
 
@@ -103,4 +141,20 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 
-For support, please contact the ASETT support team or refer to the documentation in the `/docs` directory. 
+For support, please contact the ASETT support team or refer to the documentation in the `/docs` directory.
+
+## Troubleshooting
+
+### Common Issues
+
+1. **CMS Design System Installation**
+   - Ensure you're using the correct version of @cmsgov/design-system
+   - Check for peer dependency conflicts
+
+2. **React Router Issues**
+   - Verify React Router version compatibility
+   - Check route configuration in App.jsx
+
+3. **Build Failures**
+   - Clear npm cache: `npm cache clean --force`
+   - Delete node_modules and reinstall: `rm -rf node_modules && npm install` 
