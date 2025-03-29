@@ -74,7 +74,7 @@ REACT_APP_API_URL=http://localhost:3000
 
 4. Start the development server:
 ```bash
-npm start
+ start
 ```
 
 The application will be available at `http://localhost:3000`
@@ -158,8 +158,8 @@ npm run build
 
 3. Set up environment variables in Netlify:
    ```
-   NODE_VERSION: 14
-   NPM_VERSION: 6
+   NODE_VERSION: 18
+   NPM_VERSION: 9
    REACT_APP_ENVIRONMENT: production
    REACT_APP_API_URL: https://api.asett.cms.gov
    ```
