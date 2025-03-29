@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // index.js
-import '@cmsgov/design-system/dist/css/index.css';;
+// import '@cmsgov/design-system/dist/css/index.css';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
