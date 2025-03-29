@@ -1,0 +1,140 @@
+# Netlify Configuration File
+
+[build]
+  command = "npm run build"
+  publish = "build"
+  base = "/"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+  REACT_APP_ENVIRONMENT = "production"
+  REACT_APP_VERSION = "$npm_package_version"
+  REACT_APP_NAME = "ASETT CMS"
+  REACT_APP_DESCRIPTION = "Administrative Simplification Enforcement and Testing Tool"
+
+# Build Plugins
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Build Hooks
+[build.hooks]
+  pre_build = "npm ci"
+  post_build = "npm run test"
+
+# Functions
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Development Settings
+[dev]
+  command = "npm start"
+  port = 3000
+  targetPort = 3000
+  publish = "build"
+  framework = "create-react-app"
+  autoLaunch = true
+
+# Image Optimization
+[image]
+  provider = "ipx"
+  domains = ["*.cms.gov"]
+
+# Processing
+[processing]
+  skip_processing = false
+
+[processing.html]
+  pretty_urls = true
+
+[processing.css]
+  bundle = true
+  minify = true
+
+[processing.js]
+  bundle = true
+  minify = true
+
+[processing.images]
+  compress = true
+
+# Branch Deploy Contexts
+[context.branch-deploy]
+  command = "npm run build"
+  environment = { NODE_ENV = "development" }
+
+[context.deploy-preview]
+  command = "npm run build"
+  environment = { NODE_ENV = "staging" }
+
+[context.production]
+  command = "npm run build"
+  environment = { NODE_ENV = "production" }
+
+# Redirects
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.asett.cms.gov/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/auth/*"
+  to = "https://auth.asett.cms.gov/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/static/*"
+  to = "https://cdn.asett.cms.gov/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/health"
+  to = "/health.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/*"
+  to = "/500.html"
+  status = 500
+
+[[redirects]]
+  from = "/*"
+  to = "/maintenance.html"
+  status = 503
+  conditions = {Maintenance = ["true"]}
+
+# Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self' https://*.cms.gov; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.cms.gov; style-src 'self' 'unsafe-inline' https://*.cms.gov; img-src 'self' data: https://*.cms.gov; font-src 'self' data: https://*.cms.gov; connect-src 'self' https://*.cms.gov;"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate" 
